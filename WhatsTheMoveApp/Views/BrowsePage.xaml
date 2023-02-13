@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:WhatsTheMoveApp.ViewModels"
+             xmlns:models="clr-namespace:WhatsTheMoveApp.Models"
+             x:Class="WhatsTheMoveApp.Views.BrowsePage"
+             BackgroundColor="#4A4A4A">
+             
+    <ContentPage.BindingContext>
+        <viewmodels:BrowsePageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Location" Command="{Binding AddCommand}" />
+        <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ListView CachingStrategy="RecycleElement"
+              BackgroundColor="#4A4A4A"
+              ItemsSource="{Binding Locations}"
+              HasUnevenRows="False"
+              RowHeight="100"
+              SeparatorColor="Black"
+              SeparatorVisibility="None"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              RefreshControlColor="LightSlateGray">
+
+        <ListView.Header>
+            <StackLayout Padding="10">
+                <Label Text="What's The Move?"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="WhiteSmoke"/>
+            </StackLayout>
+        </ListView.Header>
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Location">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Text="Button"/>
+                    </ViewCell.ContextActions>
+                    <Grid Padding="5">
+                        <Frame CornerRadius="25"
+                               HasShadow="True"
+                               BackgroundColor="LightSlateGray"/>
+                        <StackLayout Orientation="Horizontal" Spacing="25" Padding="10">
+                            <Image Source="{Binding LogoPath}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       WidthRequest="90"/>
+
+                            <StackLayout Orientation="Horizontal" Spacing="30">
+                                <Label Text="{Binding Name}"
+                                       TextColor="WhiteSmoke"
+                                       FontSize="Large"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand"/>
+
+                                <Label Text="{Binding Rating}"
+                                       FontSize="Large"
+                                       TextColor="OrangeRed"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+</ContentPage>
