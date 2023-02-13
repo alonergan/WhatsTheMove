@@ -4,75 +4,88 @@
              xmlns:viewmodels="clr-namespace:WhatsTheMoveApp.ViewModels"
              xmlns:models="clr-namespace:WhatsTheMoveApp.Models"
              x:Class="WhatsTheMoveApp.Views.BrowsePage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              BackgroundColor="#4A4A4A">
-             
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="Whats the Move?" HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
     <ContentPage.BindingContext>
         <viewmodels:BrowsePageViewModel/>
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Location" Command="{Binding AddCommand}" />
-        <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}" />
-    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <RefreshView
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            RefreshColor="OrangeRed">
+            
+            <CollectionView ItemsSource="{Binding Locations}"
+                            BackgroundColor="#4A4A4A"
+                            ItemSizingStrategy="MeasureAllItems"
+                            SelectionMode="Single">
 
-    <ListView CachingStrategy="RecycleElement"
-              BackgroundColor="#4A4A4A"
-              ItemsSource="{Binding Locations}"
-              HasUnevenRows="False"
-              RowHeight="100"
-              SeparatorColor="Black"
-              SeparatorVisibility="None"
-              IsPullToRefreshEnabled="True"
-              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-              RefreshCommand="{Binding RefreshCommand}"
-              RefreshControlColor="LightSlateGray">
-
-        <ListView.Header>
-            <StackLayout Padding="10">
-                <Label Text="What's The Move?"
+                <CollectionView.Header>
+                    <Label Text="What's The Move?"
                        FontSize="Medium"
                        FontAttributes="Bold"
                        HorizontalTextAlignment="Center"
                        TextColor="WhiteSmoke"/>
-            </StackLayout>
-        </ListView.Header>
+                </CollectionView.Header>
 
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Location">
-                <ViewCell>
-                    <ViewCell.ContextActions>
-                        <MenuItem Text="Button"/>
-                    </ViewCell.ContextActions>
-                    <Grid Padding="5">
-                        <Frame CornerRadius="25"
-                               HasShadow="True"
-                               BackgroundColor="LightSlateGray"/>
-                        <StackLayout Orientation="Horizontal" Spacing="25" Padding="10">
-                            <Image Source="{Binding LogoPath}"
-                                       HorizontalOptions="Center"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Location">
+                        <Grid Margin="0, 5, 0, 5"
+                              BackgroundColor="Transparent">
+                            <SwipeView android:SwipeView.SwipeTransitionMode="Drag"
                                        VerticalOptions="Center"
-                                       WidthRequest="90"/>
+                                       BackgroundColor="#4A4A4A">
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Select"
+                                               BackgroundColor="Orange" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Frame CornerRadius="20"
+                                       HasShadow="True"
+                                       BackgroundColor="LightSlateGray">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                            <StackLayout Orientation="Horizontal" Spacing="30">
-                                <Label Text="{Binding Name}"
-                                       TextColor="WhiteSmoke"
-                                       FontSize="Large"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="CenterAndExpand"/>
+                                        <Image Source="{Binding LogoPath}"
+                                           Grid.Column="1"
+                                           HeightRequest="60"
+                                           WidthRequest="60"/>
+                                        <Label Text="{Binding Name}"
+                                           Grid.Column="2"
+                                           FontSize="Medium"
+                                           VerticalOptions="Center"/>
+                                        <Label Text="{Binding Rating}"
+                                           Grid.Column="3"
+                                           TextColor="OrangeRed"
+                                           FontSize="Large"
+                                           VerticalOptions="Center"
+                                               FontAttributes="Bold"
+                                           />
+                                    </Grid>
+                                </Frame>
+                            </SwipeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                                <Label Text="{Binding Rating}"
-                                       FontSize="Large"
-                                       TextColor="OrangeRed"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="EndAndExpand"/>
-                            </StackLayout>
-                        </StackLayout>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
 
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-
-    </ListView>
 </ContentPage>

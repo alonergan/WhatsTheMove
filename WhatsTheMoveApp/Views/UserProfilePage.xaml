@@ -1,12 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:WhatsTheMoveApp.Views"
+             xmlns:viewmodels="clr-namespace:WhatsTheMoveApp.ViewModels"
              x:Class="WhatsTheMoveApp.Views.UserProfilePage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:UserProfilePageViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="User Profile Page"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Text="Logout" Command="{Binding LogoutCommand}" VerticalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>
