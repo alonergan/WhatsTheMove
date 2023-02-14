@@ -15,6 +15,7 @@ namespace WhatsTheMoveApp
             Routing.RegisterRoute(nameof(BrowsePage), typeof(BrowsePage));
             Routing.RegisterRoute(nameof(UserProfilePage), typeof(UserProfilePage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
 
 
         }

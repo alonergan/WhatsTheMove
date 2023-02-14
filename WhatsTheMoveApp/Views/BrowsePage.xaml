@@ -5,7 +5,9 @@
              xmlns:models="clr-namespace:WhatsTheMoveApp.Models"
              x:Class="WhatsTheMoveApp.Views.BrowsePage"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             BackgroundColor="#4A4A4A">
+             BackgroundColor="#4A4A4A"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="True">
 
     <NavigationPage.TitleView>
         <StackLayout>

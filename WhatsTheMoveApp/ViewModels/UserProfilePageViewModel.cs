@@ -19,8 +19,7 @@ namespace WhatsTheMoveApp.ViewModels
 
         async Task Logout()
         {
-            var route = $"{nameof(LoginPage)}";
-            await Shell.Current.GoToAsync(route);
+            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
         }
     }
 }

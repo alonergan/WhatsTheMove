@@ -30,19 +30,13 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:BrowsePage}" Route="BrowsePage" />
-        <ShellContent Title="Profile" Icon="icon_about.png" ContentTemplate="{DataTemplate local:UserProfilePage}" Route="UserProfilePage"/>
+        <Tab  Title="Browse" Icon="icon_feed.png">
+            <ShellContent ContentTemplate="{DataTemplate local:BrowsePage}" Route="BrowsePage" />
+        </Tab>
+        <Tab Title="Profile" Icon="icon_about.png">
+            <ShellContent ContentTemplate="{DataTemplate local:UserProfilePage}" Route="UserProfilePage"/>
+        </Tab>
     </TabBar>
-
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
- 
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
-    
-    -->
 
 
 </Shell>
