@@ -1,12 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WhatsTheMoveApp.Views.SignUpPage">
+             x:Class="WhatsTheMoveApp.Views.SignUpPage"
+             xmlns:views="clr-namespace:WhatsTheMoveApp.Views"
+             xmlns:viewmodels="clr-namespace:WhatsTheMoveApp.ViewModels"
+             x:DataType="viewmodels:SignUpPageViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#4A4A4A">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:SignUpPageViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Sign Up Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="40"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center">
+            <Label Text="Welcome to What's The Move!"
+                   TextColor="White"
+                   FontSize="Medium"
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+            <Entry x:Name="userSignUpEmail"
+                   Placeholder="Email address"
+                   PlaceholderColor="Gray" />
+            <Entry x:Name="userSignUpPassword" 
+                   Placeholder="Password"
+                   PlaceholderColor="Gray" />
+            <Entry x:Name="userSignUpPasswordConfirmation" 
+                   Placeholder="Confirm Password"
+                   PlaceholderColor="Gray" />
+            <Button Text="Sign Up"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderWidth="1.5"
+                    BorderColor="Gray"
+                    CornerRadius="50"
+                    Command="{Binding RegisterCommand}" />
+            <Button Text="Login"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderWidth="1.5"
+                    BorderColor="Gray"
+                    CornerRadius="50"
+                    Command="{Binding ReturnCommand}" />
+                    
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

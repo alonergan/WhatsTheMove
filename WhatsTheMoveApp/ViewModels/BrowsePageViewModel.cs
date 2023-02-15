@@ -24,7 +24,7 @@ namespace WhatsTheMoveApp.ViewModels
             Title = "Trending Locations";
             var BrookhavenLogo = "https://images.squarespace-cdn.com/content/v1/5defe6b5d6702f39f24e8ba0/1576009303487-FWX1WJKL4M5QYP6N171P/NEW+Brook+Haven+Logo.png?format=1500w";
             var YoungAveLogo = "https://www.youngavenuedeli.com/wp-content/uploads/2015/07/young-ave-deli_alpha_SM.png";
-            var TestLogo = "C:\\Users\\aflon\\Desktop\\WhatsTheMove\\alpha\\WhatsTheMoveApp\\WhatsTheMoveApp.Android\\Resources\\drawable\\xamarin_logo.png";
+            var TestLogo = "C:\\Users\\aflon\\Desktop\\WhatsTheMove\\beta\\WhatsTheMoveApp\\WhatsTheMoveApp.Android\\Resources\\drawable\\WTMLogo.png";
 
 
             Locations = new ObservableRangeCollection<Location>();
