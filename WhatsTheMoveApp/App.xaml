@@ -2,31 +2,161 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WhatsTheMoveApp.App">
-    <!--
-        Define global resources and styles here, that apply to all pages in your app.
-    -->
+
+    <!--This markup contains the global resources for styles of various elements within the app-->
+
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Disabled">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
+            
+            <!--Global Colors-->
+            <Color x:Key="PrimaryColor">#4A4A4A</Color>
+            <Color x:Key="SecondaryColor">#B0B2B8</Color>
+            <Color x:Key="TertiaryColor">#B80F00</Color>
+            <Color x:Key="TextColor">WhiteSmoke</Color>
+            <Color x:Key="SubTextColor">#a5a2a2</Color>
+
+            <!--Global Text Styles-->
+            <Style x:Key="HeaderText" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
+
+            <Style x:Key="SubHeaderText" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="DescriptionText" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="TextColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <!--**************************** Location List Styles in Browse Page ****************************-->
+            <!--
+                Heirarchy as follows
+                <Collection View>
+                    <List Grid>
+                        <List Item Frame>
+                            <List Item Grid>
+                                <Item Image>
+                                <Item Name>
+                                <Item Rating>
+            -->
+            
+            <!--List Style-->
+            <Style x:Key="LocationCollectionView" TargetType="CollectionView">
+                <Setter Property="SelectionMode" Value="Single"/>
+                <Setter Property="ItemSizingStrategy" Value="MeasureAllItems"/>
+            </Style>
+
+            <!--List Header Frame Style-->
+            <Style x:Key="ListHeaderFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="7"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+            
+            <!--List Grid Style-->
+            <Style x:Key="ListGrid" TargetType="Grid">
+                <Setter Property="Margin" Value="0,5,0,5"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
+            <!--List Item Style-->
+            <Style x:Key="CollectionViewItem" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}"/>
+            </Style>
+
+            <!--List Item Image Style-->
+            <Style x:Key="ListItemImage" TargetType="Image">
+                <Setter Property="HeightRequest" Value="70"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <!--List Item Name Style-->
+            <Style x:Key="RatingText" TargetType="Label">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource TertiaryColor}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <!--List Item Rating Style-->
+            <Style x:Key="LocationNameText" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <!--**************************** User Profile Styles ****************************-->
+            <!--
+                Heirarchy as follows
+            -->
+
+            <!--User Profile Main Frame-->
+            <Style x:Key="UserProfileMainFrame" TargetType="Frame">
+                <Setter Property="TranslationY" Value="{OnPlatform iOS='-150', Android='0'}"/>
+                <Setter Property="HeightRequest" Value="{OnPlatform iOS='120', Android='250'}"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            
+            <!--User Name Text-->
+            <Style x:Key="UserNameText" TargetType="Label">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+            <!--User Location Text-->
+            <Style x:Key="UserLocationText" TargetType="Label">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="{StaticResource SubTextColor}"/>
+            </Style>
+            
+            <!--Board Title Text-->
+            <Style x:Key="BoardTitleText" TargetType="Label">
+                <Setter Property="Padding" Value="0,30,0,5"/>
+                <Setter Property="TextColor" Value="{StaticResource SubTextColor}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <!--Board Content Text-->
+            <Style x:Key="BoardContentText" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <!--Logout Button-->
+            <Style x:Key="LogoutButton" TargetType="Button">
+                <Setter Property="Text" Value="Logout"/>
+                <Setter Property="TextColor" Value="{StaticResource TextColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource TertiaryColor}"/>
+                <Setter Property="Margin" Value="0,20,0,2"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="Command" Value="{Binding LogoutCommand}"/>
+            </Style>
+
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

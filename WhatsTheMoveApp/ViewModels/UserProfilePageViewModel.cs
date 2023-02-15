@@ -11,10 +11,12 @@ namespace WhatsTheMoveApp.ViewModels
     internal class UserProfilePageViewModel : ViewModelBase
     {
         public AsyncCommand LogoutCommand { get; }
+        public string ProfileImage;
 
         public UserProfilePageViewModel()
         {
             LogoutCommand = new AsyncCommand(Logout);
+            ProfileImage = "C:\\Users\\aflon\\Desktop\\WhatsTheMove\\beta\\WhatsTheMoveApp\\WhatsTheMoveApp.Android\\Resources\\drawable";
         }
 
         async Task Logout()

@@ -3,19 +3,86 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:WhatsTheMoveApp.Views"
              xmlns:viewmodels="clr-namespace:WhatsTheMoveApp.ViewModels"
-             x:Class="WhatsTheMoveApp.Views.UserProfilePage">
+             x:Class="WhatsTheMoveApp.Views.UserProfilePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource PrimaryColor}">
 
     <ContentPage.BindingContext>
         <viewmodels:UserProfilePageViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="User Profile Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="Logout" Command="{Binding LogoutCommand}" VerticalOptions="Center" />
-        </StackLayout>
+        <!--Content Page Grid-->
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Profile Image-->
+            <Image Grid.Row="0" Source="{Binding ProfileImage}" VerticalOptions="Start"/>
+            
+            <!--Profile Information-->
+            <StackLayout Grid.Row="0" 
+                         BackgroundColor="{StaticResource PrimaryColor}" 
+                         VerticalOptions="End">
+                <Frame Style="{StaticResource UserProfileMainFrame}" 
+                       CornerRadius="40">
+                    <!--Information Grid-->
+                    <Grid Padding="25, 10, 25, 0" 
+                          RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--User Name, Location, Email-->
+                        <Label Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.ColumnSpan="3"
+                               Text="John Doe"
+                               Style="{StaticResource UserNameText}"/>
+                        <Label Grid.Row="1" 
+                               Grid.Column="0" 
+                               Text="Memphis, TN"
+                               Style="{StaticResource UserLocationText}"/>
+                        <Label Grid.Row="2" 
+                               Grid.Column="0" 
+                               Grid.ColumnSpan="3"
+                               Padding="0,10,0,0"
+                               FontSize="16">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Email: " FontAttributes="Bold"/>
+                                    <Span Text=" johndoe@gmail.com"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <!--Ratings, Followers, Following-->
+                        <Label Grid.Row="3" Grid.Column="0" Text="Moves" Style="{StaticResource BoardTitleText}"/>
+                        <Label Grid.Row="4" Grid.Column="0" Text="28" Style="{StaticResource BoardContentText}"/>
+
+                        <Label Grid.Row="3" Grid.Column="1" Text="Followers" Style="{StaticResource BoardTitleText}"/>
+                        <Label Grid.Row="4" Grid.Column="1" Text="435" Style="{StaticResource BoardContentText}"/>
+
+                        <Label Grid.Row="3" Grid.Column="2" Text="Following" Style="{StaticResource BoardTitleText}"/>
+                        <Label Grid.Row="4" Grid.Column="2" Text="465" Style="{StaticResource BoardContentText}"/>
+
+                        <!--Logout Button-->
+                        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource LogoutButton}"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </Grid>
+           
+        
     </ContentPage.Content>
 
 </ContentPage>

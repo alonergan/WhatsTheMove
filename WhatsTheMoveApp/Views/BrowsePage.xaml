@@ -5,7 +5,7 @@
              xmlns:models="clr-namespace:WhatsTheMoveApp.Models"
              x:Class="WhatsTheMoveApp.Views.BrowsePage"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             BackgroundColor="#4A4A4A"
+             BackgroundColor="{StaticResource PrimaryColor}"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="True">
 
@@ -14,7 +14,7 @@
             <Label Text="Whats the Move?" HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </NavigationPage.TitleView>
-    
+
     <ContentPage.BindingContext>
         <viewmodels:BrowsePageViewModel/>
     </ContentPage.BindingContext>
@@ -23,69 +23,49 @@
         <RefreshView
             Command="{Binding RefreshCommand}"
             IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-            RefreshColor="OrangeRed">
+            RefreshColor="{StaticResource TertiaryColor}">
             
             <CollectionView ItemsSource="{Binding Locations}"
-                            BackgroundColor="#4A4A4A"
-                            ItemSizingStrategy="MeasureAllItems"
-                            SelectionMode="Single">
+                            Style="{StaticResource LocationCollectionView}">
 
                 <CollectionView.Header>
-                    <Label Text="What's The Move?"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       TextColor="WhiteSmoke"/>
+                    <Frame Style="{StaticResource ListHeaderFrame}">
+                        <Label Text="What's The Move?"
+                               Style="{StaticResource HeaderText}"/>
+                    </Frame>
                 </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Location">
-                        <Grid Margin="0, 5, 0, 5"
-                              BackgroundColor="Transparent">
-                            <SwipeView android:SwipeView.SwipeTransitionMode="Drag"
-                                       VerticalOptions="Center"
-                                       BackgroundColor="#4A4A4A">
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem Text="Select"
-                                               BackgroundColor="Orange" />
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
-                                <Frame CornerRadius="20"
-                                       HasShadow="True"
-                                       BackgroundColor="LightSlateGray">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                        <Grid Style="{StaticResource ListGrid}">
+                            <Frame Style="{StaticResource CollectionViewItem}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                        <Image Source="{Binding LogoPath}"
+                                    <Image Source="{Binding LogoPath}"
                                            Grid.Column="1"
-                                           HeightRequest="60"
-                                           WidthRequest="60"/>
-                                        <Label Text="{Binding Name}"
+                                           Style="{StaticResource ListItemImage}"/>
+
+                                    <Label Text="{Binding Name}"
                                            Grid.Column="2"
-                                           FontSize="Medium"
-                                           VerticalOptions="Center"/>
-                                        <Label Text="{Binding Rating}"
+                                           Style="{StaticResource LocationNameText}"/>
+
+                                    <Label Text="{Binding Rating}"
                                            Grid.Column="3"
-                                           TextColor="OrangeRed"
-                                           FontSize="Large"
-                                           VerticalOptions="Center"
-                                               FontAttributes="Bold"
-                                           />
-                                    </Grid>
-                                </Frame>
-                            </SwipeView>
+                                           Style="{StaticResource RatingText}"/>
+                                </Grid>
+                            </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
+                
             </CollectionView>
         </RefreshView>
     </ContentPage.Content>
