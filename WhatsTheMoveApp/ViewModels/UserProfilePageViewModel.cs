@@ -21,7 +21,7 @@ namespace WhatsTheMoveApp.ViewModels
 
         async Task Logout()
         {
-            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync("//main/login");
         }
     }
 }

@@ -22,11 +22,12 @@ namespace WhatsTheMoveApp.ViewModels
         async Task Register()
         {
             Console.WriteLine("USER REGISTERED");
+            await Shell.Current.Navigation.PopAsync();  
         }
 
         async Task Return()
         {
-            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }

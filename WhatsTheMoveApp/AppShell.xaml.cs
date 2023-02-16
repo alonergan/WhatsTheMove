@@ -11,12 +11,11 @@ namespace WhatsTheMoveApp
         public AppShell()
         {
             InitializeComponent();
-
-            Routing.RegisterRoute(nameof(BrowsePage), typeof(BrowsePage));
-            Routing.RegisterRoute(nameof(UserProfilePage), typeof(UserProfilePage));
-            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-            Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
-
+            Routing.RegisterRoute("signup", typeof(SignUpPage));
+            Routing.RegisterRoute("main/login", typeof(LoginPage));
+            //Routing.RegisterRoute("main/browse", typeof(BrowsePage));
+            //Routing.RegisterRoute("main/profile", typeof(UserProfilePage));
+            BindingContext = this;
 
         }
 

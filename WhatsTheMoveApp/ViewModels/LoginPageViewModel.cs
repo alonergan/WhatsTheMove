@@ -23,12 +23,12 @@ namespace WhatsTheMoveApp.ViewModels
 
         async Task Login()
         {
-            await Shell.Current.GoToAsync($"//{nameof(BrowsePage)}");
+            await Shell.Current.GoToAsync("//main");
         }
 
         async Task SignUp()
         {
-            await Shell.Current.GoToAsync($"{nameof(SignUpPage)}");
+            await Shell.Current.GoToAsync("//login/signup");
         }
     }
 }

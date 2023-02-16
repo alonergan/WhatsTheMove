@@ -28,15 +28,26 @@
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
+    
+    <!-- Loading Screen (Checks if user has already logged in) -->
+    <ShellItem Route="loading">
+        <ShellContent ContentTemplate="{DataTemplate local:LoadingPage}"/>
+    </ShellItem>
+    
+    <!-- Login and Registration Page -->
+    <ShellContent Route="login" ContentTemplate="{DataTemplate local:LoginPage}"/>
 
-    <TabBar>
+
+    <!-- Main Page -->
+    <TabBar Route="main">
         <Tab  Title="Browse" Icon="icon_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:BrowsePage}" Route="BrowsePage" />
+            <ShellContent ContentTemplate="{DataTemplate local:BrowsePage}" Route="browse" />
         </Tab>
         <Tab Title="Profile" Icon="icon_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:UserProfilePage}" Route="UserProfilePage"/>
+            <ShellContent ContentTemplate="{DataTemplate local:UserProfilePage}" Route="profile"/>
         </Tab>
     </TabBar>
+    
 
 
 </Shell>

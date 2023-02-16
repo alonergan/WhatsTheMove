@@ -16,12 +16,6 @@ namespace WhatsTheMoveApp.Views
         {
             InitializeComponent();
             BindingContext = new BrowsePageViewModel();
-            bool loggedIn = false;
-            if (!loggedIn)
-            {
-                Console.WriteLine("------------------------------------------------------------------!!--");
-                Shell.Current.GoToAsync($"{nameof(LoginPage)}");
-            }
         }
     }
 }
