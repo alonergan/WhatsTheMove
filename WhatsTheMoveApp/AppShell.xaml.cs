@@ -13,6 +13,7 @@ namespace WhatsTheMoveApp
             InitializeComponent();
             Routing.RegisterRoute("signup", typeof(SignUpPage));
             Routing.RegisterRoute("main/login", typeof(LoginPage));
+            Routing.RegisterRoute("settings", typeof(SettingsPage));
             //Routing.RegisterRoute("main/browse", typeof(BrowsePage));
             //Routing.RegisterRoute("main/profile", typeof(UserProfilePage));
             BindingContext = this;
